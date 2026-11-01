@@ -1,3 +1,4 @@
+
 const books = [
 
     {
@@ -203,20 +204,17 @@ const books = [
 ];
 
 
-
+// Display books
 function displayBooks(bookList) {
 
     const bookContainer =
         document.getElementById("book-container");
 
-
     if (!bookContainer) {
         return;
     }
 
-
     bookContainer.innerHTML = "";
-
 
     bookList.forEach(function(book) {
 
@@ -224,28 +222,28 @@ function displayBooks(bookList) {
 
             <div class="book-card">
 
-                <div class="book-cover">
+                <a href="book-details.html?id=${book.id}"
+                   class="book-details-link">
 
-                    <img
-                        src="${book.image}"
-                        alt="${book.title}"
-                    >
+                    <div class="book-cover">
 
-                </div>
+                        <img
+                            src="${book.image}"
+                            alt="${book.title}"
+                        >
 
-                <h2>
-                    ${book.title}
-                </h2>
+                    </div>
 
-                <p>
-                    ${book.author}
-                </p>
+                    <h2>${book.title}</h2>
 
-                <h3>
-                    ₹${book.price}
-                </h3>
+                </a>
+
+                <p>${book.author}</p>
+
+                <h3>₹${book.price}</h3>
 
                 <button
+                    id="cart-btn-${book.id}"
                     onclick="addToCart(${book.id})">
 
                     Add to Cart
@@ -258,11 +256,12 @@ function displayBooks(bookList) {
 
     });
 
+    updateCartButtons();
+
 }
 
 
-
-
+// Display all books initially
 if (document.getElementById("book-container")) {
 
     displayBooks(books);
@@ -270,79 +269,72 @@ if (document.getElementById("book-container")) {
 }
 
 
+// Add a book to the cart
 
 function addToCart(id) {
 
-    // Check login
-
     if (!currentUser) {
-
-        alert("Please login first.");
-
         return;
-
     }
 
+    const book = books.find(function(item) {
+        return item.id === id;
+    });
 
-    // Find book
+    if (!book) {
+        return;
+    }
 
-    const book =
-        books.find(function(book) {
-
-            return book.id === id;
-
-        });
-
-
-
-    const existingBook =
-        cart.find(function(item) {
-
-            return item.id === id;
-
-        });
-
+    const existingBook = cart.find(function(item) {
+        return item.id === id;
+    });
 
     if (existingBook) {
-
         existingBook.quantity++;
-
-    }
-
-    else {
-
+    } else {
         cart.push({
-
             id: book.id,
-
             title: book.title,
-
             author: book.author,
-
             price: book.price,
-
             quantity: 1
-
         });
-
     }
-
 
     saveCart();
+    updateCartCount();
 
+    const button = document.getElementById("cart-btn-" + id);
 
-    alert("Book added to cart!");
+    if (button) {
+        button.textContent = "Added to Cart ✓";
+        button.classList.add("added-to-cart");
 
+        setTimeout(function() {
+            button.textContent = "Add to Cart";
+            button.classList.remove("added-to-cart");
+        }, 1500);
+    }
 }
 
 
+
+// Update buttons for books already in the cart
+
+
+function updateCartButtons() {
+    // Buttons start as "Add to Cart".
+    // The added message appears temporarily after clicking.
+}
+
+
+
+// Genre and language dropdowns
 const genreButton =
     document.getElementById("genre-button");
 
 const languageButton =
     document.getElementById("language-button");
-
-
 
 const genreDropdown =
     document.getElementById("genre-dropdown");
@@ -351,12 +343,11 @@ const languageDropdown =
     document.getElementById("language-dropdown");
 
 
-if (genreButton) {
+if (genreButton && genreDropdown && languageDropdown) {
 
     genreButton.addEventListener("click", function() {
 
         genreDropdown.classList.toggle("show");
-
         languageDropdown.classList.remove("show");
 
     });
@@ -364,13 +355,11 @@ if (genreButton) {
 }
 
 
-
-if (languageButton) {
+if (languageButton && genreDropdown && languageDropdown) {
 
     languageButton.addEventListener("click", function() {
 
         languageDropdown.classList.toggle("show");
-
         genreDropdown.classList.remove("show");
 
     });
@@ -378,22 +367,20 @@ if (languageButton) {
 }
 
 
+// Close dropdowns when clicking outside
 document.addEventListener("click", function(event) {
 
     if (
-        !event.target.closest(".genre-menu") && !event.target.closest(".language-menu")
+        !event.target.closest(".genre-menu") &&
+        !event.target.closest(".language-menu")
     ) {
 
         if (genreDropdown) {
-
             genreDropdown.classList.remove("show");
-
         }
 
         if (languageDropdown) {
-
             languageDropdown.classList.remove("show");
-
         }
 
     }
@@ -401,6 +388,7 @@ document.addEventListener("click", function(event) {
 });
 
 
+// Read selected genre and language from the URL
 const params =
     new URLSearchParams(window.location.search);
 
@@ -411,80 +399,33 @@ const selectedLanguage =
     params.get("language");
 
 
+// Filter books
 if (selectedGenre || selectedLanguage) {
+
+    let filteredBooks = books;
+
+    if (selectedGenre) {
+
+        filteredBooks = filteredBooks.filter(function(book) {
+            return book.genre === selectedGenre;
+        });
+
+    }
+
+    if (selectedLanguage) {
+
+        filteredBooks = filteredBooks.filter(function(book) {
+            return book.language === selectedLanguage;
+        });
+
+    }
 
     const bookContainer =
         document.getElementById("book-container");
 
-
     if (bookContainer) {
 
-        let filteredBooks = books;
-
-        if (selectedGenre) {
-
-            filteredBooks =
-                books.filter(function(book) {
-
-                    return book.genre === selectedGenre;
-
-                });
-
-        }
-
-        if (selectedLanguage) {
-
-            filteredBooks =
-                books.filter(function(book) {
-
-                    return book.language === selectedLanguage;
-
-                });
-
-        }
-
-        bookContainer.innerHTML = "";
-
-        filteredBooks.forEach(function(book) {
-
-            bookContainer.innerHTML += `
-
-                <div class="book-card">
-
-                    <div class="book-cover">
-
-                        <img
-                            src="${book.image}"
-                            alt="${book.title}"
-                        >
-
-                    </div>
-
-                    <h2>
-                        ${book.title}
-                    </h2>
-
-                    <p>
-                        ${book.author}
-                    </p>
-
-                    <h3>
-                        ₹${book.price}
-                    </h3>
-
-                    <button
-                        onclick="addToCart(${book.id})">
-
-                        Add to Cart
-
-                    </button>
-
-                </div>
-
-            `;
-
-        });
-
+        displayBooks(filteredBooks);
 
         if (filteredBooks.length === 0) {
 

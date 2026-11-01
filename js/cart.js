@@ -200,3 +200,28 @@ if (clearCart) {
     });
 
 }
+
+// SHOW MESSAGE WHEN USER TRIES CHECKOUT WITH EMPTY CART
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get("empty") === "true") {
+
+    const message = document.createElement("p");
+
+    message.innerText =
+        "Your cart is empty! Please add some books before checkout.";
+
+    message.style.color = "#c7ff45";
+    message.style.textAlign = "center";
+    message.style.margin = "20px auto";
+    message.style.fontSize = "16px";
+
+    const cartContainer =
+        document.getElementById("cart-container");
+
+    if (cartContainer) {
+        cartContainer.prepend(message);
+    }
+
+}

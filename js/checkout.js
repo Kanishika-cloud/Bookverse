@@ -9,30 +9,39 @@ const checkoutItems =
 const checkoutTotal =
     document.getElementById("checkout-total");
 
+const checkoutMessage =
+    document.getElementById("checkout-message");
 
 
-// CHECK LOGIN 
+// CHECK LOGIN
+
 if (!currentUser) {
-
-    alert("Please login before checkout.");
 
     window.location.href = "books.html";
 
 }
 
 
+// CHECK EMPTY CART
+
+if (!cart || cart.length === 0) {
+
+    window.location.href = "cart.html?empty=true";
+
+}
+
 
 // DISPLAY ORDER
 
-
 function displayCheckout() {
+
+    if (!checkoutItems || !checkoutTotal) {
+        return;
+    }
 
     checkoutItems.innerHTML = "";
 
-
-    // CHECK CART
-
-    if (cart.length === 0) {
+    if (!cart || cart.length === 0) {
 
         checkoutItems.innerHTML =
             "<p>Your cart is empty.</p>";
@@ -43,16 +52,11 @@ function displayCheckout() {
 
     }
 
-
     let total = 0;
-
 
     cart.forEach(function(item) {
 
-        total =
-            total +
-            item.price * item.quantity;
-
+        total += item.price * item.quantity;
 
         checkoutItems.innerHTML += `
 
@@ -79,14 +83,32 @@ function displayCheckout() {
         `;
 
     });
+
     checkoutTotal.innerText = total;
+
 }
+
 
 // DISPLAY CART
 
 displayCheckout();
-// PLACE ORDER
 
+
+// EMAIL VALIDATION
+
+function validateEmail(email) {
+
+    email = email.trim();
+
+    const emailPattern =
+        /^[a-zA-Z0-9]+([._%+-][a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/;
+
+    return emailPattern.test(email);
+
+}
+
+
+// PLACE ORDER
 
 if (checkoutForm) {
 
@@ -97,28 +119,44 @@ if (checkoutForm) {
             event.preventDefault();
 
 
+            // CHECK EMPTY CART AGAIN
+
+            if (!cart || cart.length === 0) {
+
+                checkoutMessage.innerText =
+                    "Your cart is empty! Please add books first.";
+
+                window.location.href = "cart.html";
+
+                return;
+
+            }
+
+
+            // GET FORM VALUES
+
             const name =
                 document.getElementById(
                     "checkout-name"
-                ).value;
+                ).value.trim();
 
 
             const email =
                 document.getElementById(
                     "checkout-email"
-                ).value;
+                ).value.trim();
 
 
             const address =
                 document.getElementById(
                     "checkout-address"
-                ).value;
+                ).value.trim();
 
 
             const pincode =
                 document.getElementById(
                     "checkout-pincode"
-                ).value;
+                ).value.trim();
 
 
             const payment =
@@ -127,28 +165,62 @@ if (checkoutForm) {
                 ).value;
 
 
-            // PIN CODE VALIDATION
+            // NAME VALIDATION
 
-            if (!/^[0-9]{6}$/.test(pincode)) {
+            if (name.length < 2) {
 
-                document.getElementById(
-                    "checkout-message"
-                ).innerText =
-                    "Please enter a valid 6 digit PIN code.";
+                checkoutMessage.innerText =
+                    "Please enter a valid name.";
 
                 return;
 
             }
 
 
-            // CHECK EMPTY CART
+            // EMAIL VALIDATION
 
-            if (cart.length === 0) {
+            if (!validateEmail(email)) {
 
-                document.getElementById(
-                    "checkout-message"
-                ).innerText =
-                    "Your cart is empty.";
+                checkoutMessage.innerText =
+                    "Please enter a valid email address.";
+
+                return;
+
+            }
+
+
+            // ADDRESS VALIDATION
+
+            if (address.length < 5) {
+
+                checkoutMessage.innerText =
+                    "Please enter your complete address.";
+
+                return;
+
+            }
+
+
+            // PIN CODE VALIDATION
+
+            // INDIAN PIN CODE VALIDATION
+
+          if (!/^[1-9][0-9]{5}$/.test(pincode)) {
+
+         checkoutMessage.innerText =
+        "Please enter a valid 6-digit Indian PIN code.";
+
+    return;
+
+}
+
+
+            // PAYMENT VALIDATION
+
+            if (!payment) {
+
+                checkoutMessage.innerText =
+                    "Please select a payment method.";
 
                 return;
 
@@ -178,6 +250,8 @@ if (checkoutForm) {
                 date: new Date().toLocaleString()
 
             };
+
+
             // SAVE ORDER
 
             localStorage.setItem(
@@ -193,13 +267,13 @@ if (checkoutForm) {
             saveCart();
 
 
-            // SHOW MESSAGE
+            // SHOW SUCCESS MESSAGE
 
-            document.getElementById(
-                "checkout-message"
-            ).innerText =
+            checkoutMessage.innerText =
                 "Order placed successfully!";
 
+
+            // RESET FORM
 
             checkoutForm.reset();
 

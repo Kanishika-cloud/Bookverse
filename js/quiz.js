@@ -10,7 +10,6 @@ const quizResult =
 
 if (!currentUser) {
 
-    alert("Please login first.");
 
     window.location.href = "index.html";
 

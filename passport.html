@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BookVerse — Reading Passport</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="grid-background"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <div class="brand-symbol">B</div>
+            <div>
+                <strong>BOOKVERSE</strong>
+                <small>STORIES BEYOND PAGES</small>
+            </div>
+        </a>
+
+        <div class="nav-center">
+            <a href="index.html">HOME</a>
+            <a href="books.html">EXPLORE</a>
+            <a href="passport.html" class="nav-active">PASSPORT</a>
+            <a href="cart.html">CART</a>
+        </div>
+
+        <div class="nav-right">
+            <span id="user-area"></span>
+        </div>
+    </nav>
+
+    <main class="passport-page">
+        <section class="passport-hero">
+            <p class="passport-kicker">YOUR PERSONAL READING UNIVERSE</p>
+            <h1>Your Reading<br><i>Passport.</i></h1>
+            <p class="passport-intro">
+                Every book leaves a mark. Track your journey, collect stories,
+                and celebrate how far you've travelled.
+            </p>
+        </section>
+
+        <p id="passport-message" class="passport-message"></p>
+
+        <section class="passport-stats">
+            <article class="passport-stat">
+                <span>BOOKS SAVED</span>
+                <strong id="saved-count">0</strong>
+            </article>
+            <article class="passport-stat">
+                <span>BOOKS FINISHED</span>
+                <strong id="finished-count">0</strong>
+            </article>
+            <article class="passport-stat">
+                <span>READING GOAL</span>
+                <strong id="goal-summary">0 / 5</strong>
+            </article>
+        </section>
+
+        <section class="passport-goal">
+            <div>
+                <p class="passport-kicker">YOUR NEXT MILESTONE</p>
+                <h2>Set your reading goal.</h2>
+                <p>How many books would you like to finish?</p>
+            </div>
+
+            <form id="goal-form">
+                <input id="reading-goal" type="number" min="1" max="100" value="5" required>
+                <button type="submit">SAVE GOAL ↗</button>
+            </form>
+
+            <div class="goal-track">
+                <div id="goal-progress"></div>
+            </div>
+            <p id="goal-caption">Your next chapter starts here.</p>
+        </section>
+
+        <section class="passport-achievements">
+            <div class="passport-section-heading">
+                <p class="passport-kicker">MILESTONES</p>
+                <h2>Your achievements.</h2>
+            </div>
+
+            <div class="achievement-grid" id="achievement-grid"></div>
+        </section>
+
+        <section class="passport-shelf">
+            <div class="passport-section-heading">
+                <p class="passport-kicker">YOUR PRIVATE COLLECTION</p>
+                <h2>My bookshelf.</h2>
+                <p>Save a book here, then mark it as finished when you've read it.</p>
+            </div>
+
+            <form id="shelf-form" class="shelf-form">
+                <select id="shelf-book" required>
+                    <option value="">Choose a book from BookVerse</option>
+                </select>
+                <button type="submit">ADD TO BOOKSHELF +</button>
+            </form>
+
+            <div id="passport-shelf-grid" class="passport-shelf-grid"></div>
+        </section>
+
+        <section class="passport-discover">
+            <p class="passport-kicker">THE NEXT CHAPTER IS WAITING</p>
+            <h2>Find a story<br><i>you'll remember.</i></h2>
+            <a href="books.html" class="passport-explore-button">EXPLORE BOOKS ↗</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-word">BOOKVERSE</div>
+        <div class="footer-info">
+            <span>© 2026 BOOKVERSE</span>
+            <span>STORIES BEYOND PAGES</span>
+            <span>MADE FOR READERS</span>
+        </div>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/passport.js"></script>
+</body>
+</html>

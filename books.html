@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>BookVerse — Popular Reads</title>
 
@@ -17,564 +14,442 @@
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
           rel="stylesheet">
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================
-         AMBIENT BACKGROUND
-    ========================== -->
-
+    <!-- AMBIENT BACKGROUND -->
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
     <div class="grid-background"></div>
 
-
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
+    <!-- NAVBAR -->
     <nav class="navbar">
 
         <a href="index.html" class="brand">
-
-            <div class="brand-symbol">
-                B
-            </div>
+            <div class="brand-symbol">B</div>
 
             <div>
-
-                <strong>
-                    BOOKVERSE
-                </strong>
-
-                <small>
-                    STORIES BEYOND PAGES
-                </small>
-
+                <strong>BOOKVERSE</strong>
+                <small>STORIES BEYOND PAGES</small>
             </div>
-
         </a>
-
 
         <div class="nav-center">
 
-            <a href="index.html">
-                HOME
-            </a>
+            <a href="index.html">HOME</a>
 
-            <a href="books.html" class="nav-active">
-                EXPLORE
-            </a>
+            <a href="books.html" class="nav-active">EXPLORE</a>
 
-            <a href="cart.html">
+            <a href="cart.html" class="cart-nav-link">
                 CART
+                <span id="cart-count">0</span>
             </a>
+
+            <a href="passport.html">PASSPORT</a>
 
         </div>
 
-
         <div class="nav-right">
-
             <span id="user-area"></span>
 
-            <button
-                id="login-button"
-                class="login-button">
-
+            <button id="login-button" class="login-button">
                 SIGN IN
-
             </button>
-
         </div>
 
     </nav>
 
+    <!-- BOOK FILTER NAVIGATION -->
     <nav class="book-filter-nav">
 
-    <div class="book-filter-left">
+        <div class="book-filter-left">
+            <span>BROWSE BY</span>
+        </div>
 
-        <span>
-            BROWSE BY
-        </span>
+        <div class="book-filter-right">
 
-    </div>
+            <!-- GENRES -->
+            <div class="genre-menu">
 
+                <button id="genre-button" class="filter-button">
+                    GENRES ▾
+                </button>
 
-    <div class="book-filter-right">
+                <div id="genre-dropdown" class="filter-dropdown">
 
-        <!-- GENRES -->
+                    <a href="books.html">Popular</a>
+                    <a href="books.html?genre=thriller">Thrillers</a>
+                    <a href="books.html?genre=romcom">Rom-Coms</a>
+                    <a href="books.html?genre=non-fiction">Non-Fiction</a>
+                    <a href="books.html?genre=science-fiction">Science Fiction</a>
 
-        <div class="genre-menu">
+                </div>
+            </div>
 
-            <button
-                id="genre-button"
-                class="filter-button">
+            <!-- LANGUAGES -->
+            <div class="language-menu">
 
-                GENRES ▾
+                <button id="language-button" class="filter-button">
+                    LANGUAGES ▾
+                </button>
 
-            </button>
+                <div id="language-dropdown" class="filter-dropdown">
 
+                    <a href="books.html?language=english">English</a>
+                    <a href="books.html?language=hindi">Hindi</a>
+                    <a href="books.html?language=punjabi">Punjabi</a>
+                    <a href="books.html?language=french">French</a>
 
-            <div
-                id="genre-dropdown"
-                class="filter-dropdown">
-
-                <a href="books.html">
-                    Popular
-                </a>
-
-                <a href="books.html?genre=thriller">
-                    Thrillers
-                </a>
-
-                <a href="books.html?genre=romcom">
-                    Rom-Coms
-                </a>
-
-                <a href="books.html?genre=non-fiction">
-                    Non-Fiction
-                </a>
-
-                <a href="books.html?genre=science-fiction">
-                    Science Fiction
-                </a>
-
+                </div>
             </div>
 
         </div>
+    </nav>
 
-
-        <!-- LANGUAGES -->
-
-        <div class="language-menu">
-
-            <button
-                id="language-button"
-                class="filter-button">
-
-                LANGUAGES ▾
-
-            </button>
-
-
-            <div
-                id="language-dropdown"
-                class="filter-dropdown">
-
-                <a href="books.html?language=english">
-                    English
-                </a>
-
-                <a href="books.html?language=hindi">
-                    Hindi
-                </a>
-
-                <a href="books.html?language=punjabi">
-                    Punjabi
-                </a>
-
-                <a href="books.html?language=french">
-                    French
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-
-    <!-- =========================
-         BOOK COLLECTION
-    ========================== -->
-
+    <!-- BOOK COLLECTION -->
     <main class="books-page">
-
 
         <section class="popular-section">
 
-
             <!-- SECTION TOP -->
-
             <div class="popular-top">
-
 
                 <div class="popular-title">
 
                     <div class="section-kicker">
-
                         <span></span>
-
-                        <p>
-                            THE BOOKVERSE COLLECTION
-                        </p>
-
+                        <p>THE BOOKVERSE COLLECTION</p>
                     </div>
-
 
                     <h1>
                         Popular
                         <i>Reads.</i>
                     </h1>
 
-
                     <p class="popular-description">
-
                         Six stories.
                         Six different worlds.
                         One place to discover them.
-
                     </p>
 
                 </div>
 
-
                 <div class="collection-meta">
 
-                    <div class="collection-number">
-                        06
-                    </div>
+                    <div class="collection-number">06</div>
 
                     <div class="collection-meta-text">
-
-                        <span>
-                            CURATED COLLECTION
-                        </span>
+                        <span>CURATED COLLECTION</span>
 
                         <p>
                             BOOKS WORTH
                             <br>
                             KEEPING
                         </p>
-
                     </div>
 
                 </div>
-
             </div>
-
-
 
             <!-- DECORATIVE LINE -->
-
             <div class="collection-line">
 
-                <span>
-                    01 — 06
-                </span>
-
+                <span>01 — 06</span>
                 <div></div>
-
-                <span>
-                    EXPLORE
-                </span>
+                <span>EXPLORE</span>
 
             </div>
 
-
-
-            <!-- =========================
-                 BOOKS GENERATED BY JS
-            ========================== -->
-
+            <!-- BOOKS GENERATED BY EXISTING JAVASCRIPT -->
             <div id="book-container"></div>
 
-
         </section>
-
     </main>
 
-
-
-    <!-- =========================
-         LOGIN POPUP
-    ========================== -->
-
+    <!-- LOGIN POPUP -->
     <div id="login-popup" class="popup">
-
 
         <div class="popup-box">
 
+            <button id="close-login" class="close-button">×</button>
 
-            <button
-                id="close-login"
-                class="close-button">
+            <div class="popup-symbol">B</div>
 
-                ×
-
-            </button>
-
-
-            <div class="popup-symbol">
-                B
-            </div>
-
-
-            <span class="popup-label">
-                WELCOME BACK
-            </span>
-
+            <span class="popup-label">WELCOME BACK</span>
 
             <h2>
-
                 Continue
                 <br>
-
                 your <i>journey.</i>
-
             </h2>
 
-
             <p class="popup-text">
-
-                Sign in to continue exploring
-                BookVerse.
-
+                Sign in to continue exploring BookVerse.
             </p>
-
 
             <form id="login-form">
 
-
                 <div class="input-box">
-
-                    <label>
-                        EMAIL
-                    </label>
+                    <label>EMAIL</label>
 
                     <input
                         type="email"
                         id="login-email"
                         placeholder="you@example.com"
                         required>
-
                 </div>
 
-
                 <div class="input-box">
-
-                    <label>
-                        PASSWORD
-                    </label>
+                    <label>PASSWORD</label>
 
                     <input
                         type="password"
                         id="login-password"
                         placeholder="Your password"
                         required>
-
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="form-button">
-
+                <button type="submit" class="form-button">
                     LOGIN
-
-                    <span>
-                        ↗
-                    </span>
-
+                    <span>↗</span>
                 </button>
-
 
             </form>
 
-
             <p id="login-message"></p>
 
-
             <p class="switch-text">
-
                 New here?
-
-                <button id="show-signup">
-                    Create an account
-                </button>
-
+                <button id="show-signup">Create an account</button>
             </p>
 
-
         </div>
-
     </div>
 
-
-
-    <!-- =========================
-         SIGNUP POPUP
-    ========================== -->
-
+    <!-- SIGNUP POPUP -->
     <div id="signup-popup" class="popup">
-
 
         <div class="popup-box">
 
+            <button id="close-signup" class="close-button">×</button>
 
-            <button
-                id="close-signup"
-                class="close-button">
+            <div class="popup-symbol">B</div>
 
-                ×
-
-            </button>
-
-
-            <div class="popup-symbol">
-                B
-            </div>
-
-
-            <span class="popup-label">
-                JOIN BOOKVERSE
-            </span>
-
+            <span class="popup-label">JOIN BOOKVERSE</span>
 
             <h2>
-
                 Start a new
                 <br>
-
                 <i>chapter.</i>
-
             </h2>
 
-
             <p class="popup-text">
-
-                Create your account and
-                enter a universe of stories.
-
+                Create your account and enter a universe of stories.
             </p>
-
 
             <form id="signup-form">
 
-
                 <div class="input-box">
-
-                    <label>
-                        NAME
-                    </label>
+                    <label>NAME</label>
 
                     <input
                         type="text"
                         id="signup-name"
                         placeholder="Your name"
                         required>
-
                 </div>
 
-
                 <div class="input-box">
-
-                    <label>
-                        EMAIL
-                    </label>
+                    <label>EMAIL</label>
 
                     <input
                         type="email"
                         id="signup-email"
                         placeholder="you@example.com"
                         required>
-
                 </div>
 
-
                 <div class="input-box">
-
-                    <label>
-                        PASSWORD
-                    </label>
+                    <label>PASSWORD</label>
 
                     <input
                         type="password"
                         id="signup-password"
                         placeholder="Create password"
                         required>
-
                 </div>
 
-
-                <button
-                    type="submit"
-                    class="form-button">
-
+                <button type="submit" class="form-button">
                     CREATE ACCOUNT
-
-                    <span>
-                        ↗
-                    </span>
-
+                    <span>↗</span>
                 </button>
-
 
             </form>
 
-
             <p id="signup-message"></p>
 
-
             <p class="switch-text">
-
                 Already a member?
-
-                <button id="show-login">
-                    Sign in
-                </button>
-
+                <button id="show-login">Sign in</button>
             </p>
 
+        </div>
+    </div>
+
+    <!-- =====================================
+         BOOKVERSE AI FLOATING CHATBOT
+    ====================================== -->
+
+    <div class="chatbot-widget">
+
+        <!-- FLOATING CHAT BUTTON -->
+        <button
+            id="chatbot-toggle"
+            class="chatbot-toggle"
+            aria-label="Open BookVerse AI chat">
+
+            <span class="chat-icon">✦</span>
+            <span class="chat-notification"></span>
+
+        </button>
+
+        <!-- CHAT WINDOW -->
+        <div id="chatbot-window" class="chatbot-window">
+
+            <!-- CHAT HEADER -->
+            <div class="chatbot-header">
+
+                <div class="chatbot-brand">
+
+                    <div class="chatbot-avatar">B</div>
+
+                    <div>
+                        <h3>BookVerse AI</h3>
+                        <span>
+                            <i></i>
+                            Your personal book guide
+                        </span>
+                    </div>
+
+                </div>
+
+                <button
+                    id="chatbot-close"
+                    class="chatbot-close"
+                    aria-label="Close chat">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <!-- WELCOME MESSAGE -->
+            <div class="chatbot-welcome">
+
+                <span class="chatbot-date">
+                    YOUR READING COMPANION
+                </span>
+
+                <h3>
+                    Hello, reader!
+                    <span>✦</span>
+                </h3>
+
+                <p>
+                    Looking for your next favourite book?
+                    Tell me what you love, and I'll find something for you.
+                </p>
+
+            </div>
+
+            <!-- QUICK SUGGESTIONS -->
+            <div class="chatbot-suggestions">
+
+                <button
+                    type="button"
+                    data-chat-prompt="Recommend a mystery thriller">
+
+                    🔎 Mystery books
+
+                </button>
+
+                <button
+                    type="button"
+                    data-chat-prompt="Suggest an inspiring self-growth book">
+
+                    ✨ Self-growth
+
+                </button>
+
+                <button
+                    type="button"
+                    data-chat-prompt="Show me books under ₹500">
+
+                    ₹ Under ₹500
+
+                </button>
+
+            </div>
+
+            <!-- CHAT MESSAGES -->
+            <div
+                id="chatbot-messages"
+                class="chatbot-messages"
+                aria-live="polite">
+
+            </div>
+
+            <!-- CHAT INPUT -->
+            <form id="chatbot-form" class="chatbot-input-area">
+
+                <input
+                    type="text"
+                    id="chatbot-input"
+                    placeholder="Ask me about books..."
+                    autocomplete="off"
+                    required>
+
+                <button type="submit" aria-label="Send message">
+                    ↗
+                </button>
+
+            </form>
+
+            <!-- CHAT FOOTER -->
+            <div class="chatbot-footer">
+                POWERED BY BOOKVERSE
+            </div>
 
         </div>
 
     </div>
 
+    <!-- END BOOKVERSE AI CHATBOT -->
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
+    <!-- FOOTER -->
     <footer>
 
-        <div class="footer-word">
-            BOOKVERSE
-        </div>
+        <div class="footer-word">BOOKVERSE</div>
 
         <div class="footer-info">
 
-            <span>
-                © 2026 BOOKVERSE
-            </span>
-
-            <span>
-                STORIES BEYOND PAGES
-            </span>
-
-            <span>
-                MADE FOR READERS
-            </span>
+            <span>© 2026 BOOKVERSE</span>
+            <span>STORIES BEYOND PAGES</span>
+            <span>MADE FOR READERS</span>
 
         </div>
 
     </footer>
 
-
-<script src="js/storage.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/books.js"></script>
-<script src="js/cart.js"></script>
+    <!-- JAVASCRIPT FILES: KEEP THIS ORDER -->
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/passport.js"></script>
+    <script src="js/curator.js"></script>
 
 </body>
-
 </html>

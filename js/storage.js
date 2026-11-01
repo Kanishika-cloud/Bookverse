@@ -30,3 +30,21 @@ function saveCart() {
     );
 
 }
+
+
+
+function updateCartCount() {
+    const countElement = document.getElementById("cart-count");
+
+    if (!countElement) return;
+
+    let totalItems = 0;
+
+    cart.forEach(function(item) {
+        totalItems += Number(item.quantity) || 0;
+    });
+
+    countElement.textContent = totalItems;
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
