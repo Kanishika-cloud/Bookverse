@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookVerse — Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+          rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-symbol">
+                B
+            </div>
+
+            <div>
+
+                <strong>
+                    BOOKVERSE
+                </strong>
+
+                <small>
+                    STORIES BEYOND PAGES
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-center">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="books.html">
+                EXPLORE
+            </a>
+
+            <a href="cart.html" class="nav-active">
+                CART
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <span id="user-area"></span>
+
+            <button
+                id="login-button"
+                class="login-button">
+
+                SIGN IN
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- CHECKOUT -->
+
+    <main class="checkout-page">
+
+
+        <section class="checkout-container">
+
+
+            <div class="checkout-heading">
+
+                <span>
+                    BOOKVERSE CHECKOUT
+                </span>
+
+                <h1>
+                    Complete your
+                    <i>order.</i>
+                </h1>
+
+                <p>
+                    Just a few details and your books
+                    will be on their way.
+                </p>
+
+            </div>
+
+
+
+            <div class="checkout-content">
+
+
+                <!-- CUSTOMER DETAILS -->
+
+                <div class="checkout-form-box">
+
+                    <h2>
+                        Delivery Details
+                    </h2>
+
+
+                    <form id="checkout-form">
+
+
+                        <div class="checkout-input">
+
+                            <label>
+                                FULL NAME
+                            </label>
+
+                            <input
+                                type="text"
+                                id="checkout-name"
+                                placeholder="Your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="checkout-input">
+
+                            <label>
+                                EMAIL
+                            </label>
+
+                            <input
+                            type="email"
+                            id="checkout-email"
+                            name="email"
+                            placeholder="you@example.com"
+                            maxlength="254"
+                            autocomplete="email"
+                            required>
+
+                        </div>
+
+
+                        <div class="checkout-input">
+
+                            <label>
+                                ADDRESS
+                            </label>
+
+                            <textarea
+                                id="checkout-address"
+                                placeholder="Your complete address"
+                                required></textarea>
+
+                        </div>
+
+
+                        <div class="checkout-input">
+
+                            <label>
+                                PIN CODE
+                            </label>
+
+                            <input
+                                type="text"
+                                id="checkout-pincode"
+                                placeholder="6 digit PIN code"
+                                maxlength="6"
+                                required>
+
+                        </div>
+
+
+                        <div class="checkout-input">
+
+                            <label>
+                                PAYMENT METHOD
+                            </label>
+
+                            <select
+                                id="payment-method"
+                                required>
+
+                                <option value="">
+                                    Select payment method
+                                </option>
+
+                                <option value="cod">
+                                    Cash on Delivery
+                                </option>
+
+                                <option value="upi">
+                                    UPI
+                                </option>
+
+                                <option value="card">
+                                    Credit / Debit Card
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="checkout-button">
+
+                            PLACE ORDER
+
+                            <span>
+                                ↗
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                    <p id="checkout-message"></p>
+
+                </div>
+
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="checkout-summary">
+
+                    <span>
+                        ORDER SUMMARY
+                    </span>
+
+
+                    <h2>
+                        Your
+                        <i>books.</i>
+                    </h2>
+
+
+                    <div id="checkout-items">
+
+                    </div>
+
+
+                    <div class="checkout-total">
+
+                        <span>
+                            TOTAL
+                        </span>
+
+                        <strong>
+                            ₹<span id="checkout-total">0</span>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-word">
+            BOOKVERSE
+        </div>
+
+        <div class="footer-info">
+
+            <span>
+                © 2026 BOOKVERSE
+            </span>
+
+            <span>
+                STORIES BEYOND PAGES
+            </span>
+
+            <span>
+                MADE FOR READERS
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>

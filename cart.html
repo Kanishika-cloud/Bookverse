@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookVerse — Your Cart</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+          rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="grid-background"></div>
+
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-symbol">
+                B
+            </div>
+
+            <div>
+
+                <strong>
+                    BOOKVERSE
+                </strong>
+
+                <small>
+                    STORIES BEYOND PAGES
+                </small>
+
+            </div>
+
+        </a>
+
+
+
+        <div class="nav-center">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="books.html">
+                EXPLORE
+            </a>
+
+            
+          <a href="cart.html" class="nav-active cart-nav-link">
+             CART
+          <span id="cart-count">0</span>
+</a>
+
+
+        </div>
+
+
+
+        <div class="nav-right">
+
+            <span id="user-area"></span>
+
+            <button
+                id="login-button"
+                class="login-button">
+
+                SIGN IN
+
+            </button>
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         CART PAGE
+    ========================== -->
+
+    <main class="cart-page">
+
+
+        <section class="cart-section">
+
+
+            <!-- =========================
+                 CART HEADING
+            ========================== -->
+
+            <div class="cart-top">
+
+
+                <div class="cart-title">
+
+
+                    <div class="section-kicker">
+
+                        <span></span>
+
+                        <p>
+                            YOUR SELECTION
+                        </p>
+
+                    </div>
+
+
+                    <h1>
+
+                        Your
+                        <i>Cart.</i>
+
+                    </h1>
+
+
+                    <p class="cart-description">
+
+                        The stories you've chosen,
+                        gathered in one place.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="cart-number">
+
+                    <span>
+                        01
+                    </span>
+
+                    <div></div>
+
+                    <small>
+                        YOUR LIBRARY
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 DIVIDER
+            ========================== -->
+
+            <div class="cart-line">
+
+                <span>
+                    YOUR BOOKS
+                </span>
+
+                <div></div>
+
+                <span>
+                    BOOKVERSE
+                </span>
+
+            </div>
+
+
+
+            <!-- =========================
+                 CART ITEMS
+                 JS POPULATES THIS
+            ========================== -->
+
+            <div id="cart-items">
+
+                <!-- JavaScript displays cart items here -->
+
+            </div>
+
+
+
+            <!-- =========================
+                 CART SUMMARY
+            ========================== -->
+
+            <section class="cart-summary">
+
+
+                <div class="summary-label">
+
+                    <span>
+                        ORDER SUMMARY
+                    </span>
+
+                    <p>
+                        YOUR NEXT
+                        <br>
+                        CHAPTER
+                    </p>
+
+                </div>
+
+
+
+                <div class="summary-content">
+
+                    <p>
+                        TOTAL AMOUNT
+                    </p>
+
+                    <h2>
+
+                        ₹<span id="cart-total">0</span>
+
+                    </h2>
+
+                </div>
+
+
+
+                <a href="checkout.html" class="checkout-link">
+    CHECKOUT
+    <span>↗</span>
+</a>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- login-->
+
+    <div id="login-popup" class="popup">
+
+
+        <div class="popup-box">
+
+
+            <button
+                id="close-login"
+                class="close-button">
+
+                ×
+
+            </button>
+
+
+            <div class="popup-symbol">
+                B
+            </div>
+
+
+            <span class="popup-label">
+                WELCOME BACK
+            </span>
+
+
+            <h2>
+
+                Continue
+                <br>
+
+                your <i>journey.</i>
+
+            </h2>
+
+
+            <p class="popup-text">
+
+                Sign in to continue exploring
+                BookVerse.
+
+            </p>
+
+
+            <form id="login-form">
+
+
+                <div class="input-box">
+
+                    <label>
+                        EMAIL
+                    </label>
+
+                    <input
+                        type="email"
+                        id="login-email"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        placeholder="Your password"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="form-button">
+
+                    LOGIN
+
+                    <span>
+                        ↗
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <p id="login-message"></p>
+
+
+            <p class="switch-text">
+
+                New here?
+
+                <button id="show-signup">
+                    Create an account
+                </button>
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!----SIGNUP POPUP-->
+
+    <div id="signup-popup" class="popup">
+
+
+        <div class="popup-box">
+
+
+            <button
+                id="close-signup"
+                class="close-button">
+                ×
+            </button>
+
+
+            <div class="popup-symbol">
+                B
+            </div>
+
+
+            <span class="popup-label">
+                JOIN BOOKVERSE
+            </span>
+
+
+            <h2>
+
+                Start a new
+                <br>
+
+                <i>chapter.</i>
+
+            </h2>
+
+
+            <p class="popup-text">
+
+                Create your account and
+                enter a universe of stories.
+
+            </p>
+
+
+            <form id="signup-form">
+
+
+                <div class="input-box">
+
+                    <label>
+                        NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signup-name"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>
+                        EMAIL
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signup-email"
+                        placeholder="you@example.com"
+                        required>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signup-password"
+                        placeholder="Create password"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="form-button">
+
+                    CREATE ACCOUNT
+
+                    <span>
+                        ↗
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <p id="signup-message"></p>
+
+
+            <p class="switch-text">
+
+                Already a member?
+
+                <button id="show-login">
+                    Sign in
+                </button>
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-word">
+            BOOKVERSE
+        </div>
+
+        <div class="footer-info">
+
+            <span>
+                © 2026 BOOKVERSE
+            </span>
+
+            <span>
+                STORIES BEYOND PAGES
+            </span>
+
+            <span>
+                MADE FOR READERS
+            </span>
+
+        </div>
+
+    </footer>
+
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BookVerse — Find Your Book Taste</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+          rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-symbol">
+                B
+            </div>
+
+            <div>
+
+                <strong>
+                    BOOKVERSE
+                </strong>
+
+                <small>
+                    STORIES BEYOND PAGES
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-center">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="books.html">
+                EXPLORE
+            </a>
+
+            <a href="cart.html">
+                CART
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <span id="user-area"></span>
+
+            <button
+                id="login-button"
+                class="login-button">
+
+                SIGN IN
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- QUIZ -->
+
+    <main class="quiz-page">
+
+        <section class="quiz-container">
+
+
+            <div class="quiz-heading">
+
+                <span>
+                    BOOKVERSE DISCOVERY
+                </span>
+
+                <h1>
+                    Find your
+                    <i>book taste.</i>
+                </h1>
+
+                <p>
+                    Answer a few simple questions
+                    and we'll find the stories
+                    that suit you best.
+                </p>
+
+            </div>
+
+
+
+            <form id="quiz-form">
+
+
+                <!-- QUESTION 1 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        01. What kind of story would you pick?
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q1"
+                            value="romcom"
+                            required>
+
+                        A love story with funny moments
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q1"
+                            value="thriller">
+
+                        A mysterious story with twists
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q1"
+                            value="science-fiction">
+
+                        A journey through space or the future
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q1"
+                            value="non-fiction">
+
+                        Something based on real life
+                    </label>
+
+                </div>
+
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        02. What keeps you reading?
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q2"
+                            value="romcom"
+                            required>
+
+                        A cute relationship
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q2"
+                            value="thriller">
+
+                        A surprising plot twist
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q2"
+                            value="science-fiction">
+
+                        An exciting futuristic world
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q2"
+                            value="non-fiction">
+
+                        Learning something useful
+                    </label>
+
+                </div>
+
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        03. Which character would you follow?
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q3"
+                            value="romcom"
+                            required>
+
+                        Two people falling in love
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q3"
+                            value="thriller">
+
+                        A detective solving a crime
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q3"
+                            value="science-fiction">
+
+                        An astronaut exploring another planet
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q3"
+                            value="non-fiction">
+
+                        Someone overcoming a real-life challenge
+                    </label>
+
+                </div>
+
+
+
+                <!-- QUESTION 4 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        04. Pick a movie night.
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q4"
+                            value="romcom"
+                            required>
+
+                        Romantic comedy
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q4"
+                            value="thriller">
+
+                        Psychological mystery
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q4"
+                            value="science-fiction">
+
+                        Futuristic adventure
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q4"
+                            value="non-fiction">
+
+                        Documentary
+                    </label>
+
+                </div>
+
+
+
+                <!-- QUESTION 5 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        05. What do you want a book to make you feel?
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q5"
+                            value="romcom"
+                            required>
+
+                        Warm and happy
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q5"
+                            value="thriller">
+
+                        Curious and nervous
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q5"
+                            value="science-fiction">
+
+                        Amazed
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q5"
+                            value="non-fiction">
+
+                        Inspired
+                    </label>
+
+                </div>
+
+
+
+                <!-- QUESTION 6 -->
+
+                <div class="quiz-question">
+
+                    <h2>
+                        06. Choose your ideal reading setting.
+                    </h2>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q6"
+                            value="romcom"
+                            required>
+
+                        A cosy café
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q6"
+                            value="thriller">
+
+                        A dark room during a storm
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q6"
+                            value="science-fiction">
+
+                        Somewhere under the stars
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="q6"
+                            value="non-fiction">
+
+                        A quiet study room
+                    </label>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="quiz-button">
+
+                    FIND MY BOOK TASTE
+
+                    <span>
+                        ↗
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="quiz-result"
+                class="quiz-result">
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-word">
+            BOOKVERSE
+        </div>
+
+        <div class="footer-info">
+
+            <span>
+                © 2026 BOOKVERSE
+            </span>
+
+            <span>
+                STORIES BEYOND PAGES
+            </span>
+
+            <span>
+                MADE FOR READERS
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/quiz.js"></script>
+
+</body>
+
+</html>
+```
