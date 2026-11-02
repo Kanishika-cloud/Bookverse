@@ -20,26 +20,18 @@
 
 </head>
 
-
 <body>
 
-
-    <!-- =========================
-         BACKGROUND
-    ========================== -->
+    <!-- BACKGROUND -->
 
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
     <div class="grid-background"></div>
 
 
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+    <!-- NAVBAR -->
 
     <nav class="navbar">
-
 
         <a href="index.html" class="brand">
 
@@ -62,7 +54,6 @@
         </a>
 
 
-
         <div class="nav-center">
 
             <a href="index.html">
@@ -73,15 +64,16 @@
                 EXPLORE
             </a>
 
-            
-          <a href="cart.html" class="nav-active cart-nav-link">
-             CART
-          <span id="cart-count">0</span>
-</a>
+            <a href="cart.html" class="nav-active cart-nav-link">
+                CART
+                <span id="cart-count">0</span>
+            </a>
 
+            <a href="orders.html">
+                MY ORDERS
+            </a>
 
         </div>
-
 
 
         <div class="nav-right">
@@ -98,30 +90,21 @@
 
         </div>
 
-
     </nav>
 
 
-
-    <!-- =========================
-         CART PAGE
-    ========================== -->
+    <!-- CART PAGE -->
 
     <main class="cart-page">
-
 
         <section class="cart-section">
 
 
-            <!-- =========================
-                 CART HEADING
-            ========================== -->
+            <!-- CART HEADING -->
 
             <div class="cart-top">
 
-
                 <div class="cart-title">
-
 
                     <div class="section-kicker">
 
@@ -133,25 +116,17 @@
 
                     </div>
 
-
                     <h1>
-
                         Your
                         <i>Cart.</i>
-
                     </h1>
 
-
                     <p class="cart-description">
-
                         The stories you've chosen,
                         gathered in one place.
-
                     </p>
 
-
                 </div>
-
 
 
                 <div class="cart-number">
@@ -168,14 +143,10 @@
 
                 </div>
 
-
             </div>
 
 
-
-            <!-- =========================
-                 DIVIDER
-            ========================== -->
+            <!-- DIVIDER -->
 
             <div class="cart-line">
 
@@ -192,11 +163,7 @@
             </div>
 
 
-
-            <!-- =========================
-                 CART ITEMS
-                 JS POPULATES THIS
-            ========================== -->
+            <!-- CART ITEMS -->
 
             <div id="cart-items">
 
@@ -205,13 +172,9 @@
             </div>
 
 
-
-            <!-- =========================
-                 CART SUMMARY
-            ========================== -->
+            <!-- CART SUMMARY -->
 
             <section class="cart-summary">
-
 
                 <div class="summary-label">
 
@@ -228,7 +191,6 @@
                 </div>
 
 
-
                 <div class="summary-content">
 
                     <p>
@@ -236,38 +198,29 @@
                     </p>
 
                     <h2>
-
                         ₹<span id="cart-total">0</span>
-
                     </h2>
 
                 </div>
 
 
-
                 <a href="checkout.html" class="checkout-link">
-    CHECKOUT
-    <span>↗</span>
-</a>
-
+                    CHECKOUT
+                    <span>↗</span>
+                </a>
 
             </section>
 
-
         </section>
-
 
     </main>
 
 
-
-    <!-- login-->
+    <!-- LOGIN POPUP -->
 
     <div id="login-popup" class="popup">
 
-
         <div class="popup-box">
-
 
             <button
                 id="close-login"
@@ -289,25 +242,19 @@
 
 
             <h2>
-
                 Continue
                 <br>
-
                 your <i>journey.</i>
-
             </h2>
 
 
             <p class="popup-text">
-
                 Sign in to continue exploring
                 BookVerse.
-
             </p>
 
 
             <form id="login-form">
-
 
                 <div class="input-box">
 
@@ -351,7 +298,6 @@
 
                 </button>
 
-
             </form>
 
 
@@ -368,25 +314,23 @@
 
             </p>
 
-
         </div>
 
     </div>
 
 
-
-    <!----SIGNUP POPUP-->
+    <!-- SIGNUP POPUP -->
 
     <div id="signup-popup" class="popup">
 
-
         <div class="popup-box">
-
 
             <button
                 id="close-signup"
                 class="close-button">
+
                 ×
+
             </button>
 
 
@@ -401,25 +345,19 @@
 
 
             <h2>
-
                 Start a new
                 <br>
-
                 <i>chapter.</i>
-
             </h2>
 
 
             <p class="popup-text">
-
                 Create your account and
                 enter a universe of stories.
-
             </p>
 
 
             <form id="signup-form">
-
 
                 <div class="input-box">
 
@@ -478,7 +416,6 @@
 
                 </button>
 
-
             </form>
 
 
@@ -495,16 +432,12 @@
 
             </p>
 
-
         </div>
 
     </div>
 
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -530,9 +463,12 @@
 
     </footer>
 
-<script src="js/storage.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/cart.js"></script>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
 
 </body>
 

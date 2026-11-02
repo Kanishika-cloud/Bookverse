@@ -78,203 +78,144 @@ if (showLogin) {
 
 
 // SIGN UP
-const signupForm =
-    document.getElementById("signup-form");
 
+const signupForm = document.getElementById("signup-form");
 
 if (signupForm) {
-
-    signupForm.addEventListener("submit", function(event) {
-
+    signupForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
+        const name = document.getElementById("signup-name").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const password = document.getElementById("signup-password").value;
 
-        const name =
-            document.getElementById("signup-name").value;
-
-        const email =
-            document.getElementById("signup-email").value;
-
-        const password =
-            document.getElementById("signup-password").value;
+        const message = document.getElementById("signup-message");
 
         if (
-            !email.includes("@") || (!email.endsWith(".com") && !email.endsWith(".in"))
+            !email.includes("@") ||
+            (!email.toLowerCase().endsWith(".com") &&
+             !email.toLowerCase().endsWith(".in"))
         ) {
-
-            document.getElementById(
-                "signup-message"
-            ).innerText =
+            message.innerText =
                 "Please enter a valid email with @ and .com or .in.";
-
             return;
-
         }
-
-        const hasLetter = /[A-Za-z]/.test(password);
-
-        const hasNumber = /[0-9]/.test(password);
-
 
         if (password.length < 6) {
-
-            document.getElementById(
-                "signup-message"
-            ).innerText =
+            message.innerText =
                 "Password must be at least 6 characters.";
-
             return;
-
         }
 
-
-        if (!hasLetter || !hasNumber) {
-
-            document.getElementById(
-                "signup-message"
-            ).innerText =
+        if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+            message.innerText =
                 "Password must contain letters and numbers.";
-
             return;
-
         }
 
-        const userExists =
-            users.find(function(user) {
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/auth/signup",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        password: password
+                    })
+                }
+            );
 
-                return user.email === email;
+            const data = await response.json();
 
-            });
+            if (!response.ok) {
+                message.innerText = data.message || "Signup failed.";
+                return;
+            }
 
+            message.innerText = "Account created successfully!";
+            signupForm.reset();
 
-        if (userExists) {
-
-            document.getElementById(
-                "signup-message"
-            ).innerText =
-                "This email is already registered.";
-
-            return;
-
+        } catch (error) {
+            console.error("Signup error:", error);
+            message.innerText =
+                "Unable to connect to the server. Please try again.";
         }
-
-        // CREATE NEW USER
-
-        const newUser = {
-            name: name,
-            email: email,
-            password: password
-
-        };
-
-
-        // ADD USER
-
-        users.push(newUser);
-
-
-        // SAVE USER
-
-        localStorage.setItem(
-            "users",
-            JSON.stringify(users)
-        );
-
-
-        document.getElementById(
-            "signup-message"
-        ).innerText =
-            "Account created successfully!";
-
-
-        signupForm.reset();
-
     });
-
 }
 
 
 
-const loginForm =
-    document.getElementById("login-form");
 
+
+const loginForm = document.getElementById("login-form");
 
 if (loginForm) {
-
-    loginForm.addEventListener("submit", function(event) {
-
+    loginForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
 
-        const email =
-            document.getElementById("login-email").value;
+        const message = document.getElementById("login-message");
 
-        const password =
-            document.getElementById("login-password").value;
-
-        const user =
-            users.find(function(user) {
-
-                return user.email === email && user.password === password;
-
-            });
-
-
-        if (user) {
-
-            localStorage.setItem(
-                "currentUser",
-                JSON.stringify(user)
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
             );
 
+            const data = await response.json();
 
-            document.getElementById(
-                "login-message"
-            ).innerText =
-                "Login successful!";
+            if (!response.ok) {
+                message.innerText = data.message || "Login failed.";
+                return;
+            }
 
+            // Save the token separately from the user details
+            localStorage.setItem("token", data.token);
+
+            // Do not save the password in localStorage
+            localStorage.setItem(
+                "currentUser",
+                JSON.stringify(data.user)
+            );
+
+            message.innerText = "Login successful!";
 
             setTimeout(function() {
-
                 loginPopup.style.display = "none";
 
-
-                // CHECK IF USER HAS TAKEN THE QUIZ
-
-                const bookTaste =
-                    localStorage.getItem(
-                        "bookTaste_" + user.email
-                    );
-
+                // Check whether the user has taken the quiz
+                const bookTaste = localStorage.getItem(
+                    "bookTaste_" + data.user.email
+                );
 
                 if (!bookTaste) {
-
-                    window.location.href =
-                        "quiz.html";
-
-                }
-
-                else {
-
+                    window.location.href = "quiz.html";
+                } else {
                     window.location.reload();
-
                 }
-
             }, 500);
 
+        } catch (error) {
+            console.error("Login error:", error);
+            message.innerText =
+                "Unable to connect to the server. Please try again.";
         }
-
-        else {
-
-            document.getElementById(
-                "login-message"
-            ).innerText =
-                "Wrong email or password.";
-
-        }
-
     });
-
 }
 
 
@@ -284,6 +225,7 @@ if (loginForm) {
 function logout() {
 
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
 
     window.location.reload();
 
@@ -291,33 +233,80 @@ function logout() {
 
 // SHOW USER IN NAVBAR
 
-const userArea =
-    document.getElementById("user-area");
+function updateNavbar() {
+    const userArea = document.getElementById("user-area");
+    const loginButton = document.getElementById("login-button");
 
+    const currentUser = JSON.parse(
+        localStorage.getItem("currentUser")
+    );
 
-if (userArea) {
-
-    if (currentUser) {
-
-        userArea.innerHTML = `
-
-            <span>
-                Hi, ${currentUser.name}
-            </span>
-
-            <button onclick="logout()">
-                Logout
-            </button>
-
-        `;
-
-
-        if (loginButton) {
-
-            loginButton.style.display = "none";
-
-        }
-
+    if (!userArea) {
+        return;
     }
 
+    if (currentUser) {
+        userArea.innerHTML = `
+            <span>Hi, ${currentUser.name}</span>
+            <button onclick="logout()">Logout</button>
+        `;
+
+        if (loginButton) {
+            loginButton.style.display = "none";
+        }
+    } else {
+        userArea.innerHTML = "";
+
+        if (loginButton) {
+            loginButton.style.display = "";
+        }
+    }
 }
+
+updateNavbar();
+
+
+
+async function verifyLogin() {
+    const token = localStorage.getItem("token");
+
+    // If there is no token, there is no session to verify
+    if (!token) {
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            "http://localhost:3000/api/auth/me",
+            {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            }
+        );
+
+        if (!response.ok) {
+            // Token is invalid or expired
+            localStorage.removeItem("token");
+            localStorage.removeItem("currentUser");
+            updateNavbar();
+            window.location.reload();
+            return;
+        }
+
+        const data = await response.json();
+
+        // Refresh the user details using the backend response
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(data.user)
+        );
+        updateNavbar();
+
+    } catch (error) {
+        console.error("Session verification error:", error);
+    }
+}
+
+verifyLogin();

@@ -1,6 +1,14 @@
+// ==========================================
+// GET CART ELEMENTS
+// ==========================================
+
 const cartItems =
     document.getElementById("cart-items");
 
+
+// ==========================================
+// DISPLAY CART
+// ==========================================
 
 if (cartItems) {
 
@@ -14,17 +22,19 @@ function displayCart() {
     cartItems.innerHTML = "";
 
 
-    // Check if cart is empty
+    // CHECK IF CART IS EMPTY
 
-    if (cart.length === 0) {
+    if (!cart || cart.length === 0) {
 
         cartItems.innerHTML =
             "<p>Your cart is empty.</p>";
 
+        const cartTotal =
+            document.getElementById("cart-total");
 
-        document.getElementById(
-            "cart-total"
-        ).innerText = 0;
+        if (cartTotal) {
+            cartTotal.innerText = 0;
+        }
 
         return;
 
@@ -35,9 +45,10 @@ function displayCart() {
 
 
     cart.forEach(function(item) {
+
         total =
             total +
-            item.price * item.quantity;
+            Number(item.price) * Number(item.quantity);
 
 
         cartItems.innerHTML += `
@@ -66,20 +77,23 @@ function displayCart() {
                 <div>
 
                     <button
-                        onclick="decreaseQuantity(${item.id})">
+                        onclick="decreaseQuantity('${item.id}')">
 
                         -
 
                     </button>
+
                     ${item.quantity}
+
                     <button
-                        onclick="increaseQuantity(${item.id})">
+                        onclick="increaseQuantity('${item.id}')">
 
                         +
 
                     </button>
+
                     <button
-                        onclick="removeFromCart(${item.id})">
+                        onclick="removeFromCart('${item.id}')">
 
                         Remove
 
@@ -94,19 +108,28 @@ function displayCart() {
     });
 
 
-    document.getElementById(
-        "cart-total"
-    ).innerText = total;
+    const cartTotal =
+        document.getElementById("cart-total");
+
+    if (cartTotal) {
+
+        cartTotal.innerText = total;
+
+    }
 
 }
 
+
+// ==========================================
+// INCREASE QUANTITY
+// ==========================================
 
 function increaseQuantity(id) {
 
     const book =
         cart.find(function(item) {
 
-            return item.id === id;
+            return String(item.id) === String(id);
 
         });
 
@@ -118,22 +141,25 @@ function increaseQuantity(id) {
 
     book.quantity++;
 
-
     saveCart();
 
     displayCart();
 
+    updateCartCount();
+
 }
 
 
-
+// ==========================================
+// DECREASE QUANTITY
+// ==========================================
 
 function decreaseQuantity(id) {
 
     const book =
         cart.find(function(item) {
 
-            return item.id === id;
+            return String(item.id) === String(id);
 
         });
 
@@ -146,7 +172,7 @@ function decreaseQuantity(id) {
     book.quantity--;
 
 
-    if (book.quantity === 0) {
+    if (book.quantity <= 0) {
 
         removeFromCart(id);
 
@@ -159,16 +185,21 @@ function decreaseQuantity(id) {
 
     displayCart();
 
+    updateCartCount();
+
 }
 
 
+// ==========================================
+// REMOVE INDIVIDUAL BOOK
+// ==========================================
 
 function removeFromCart(id) {
 
     cart =
         cart.filter(function(item) {
 
-            return item.id !== id;
+            return String(item.id) !== String(id);
 
         });
 
@@ -177,9 +208,14 @@ function removeFromCart(id) {
 
     displayCart();
 
+    updateCartCount();
+
 }
 
 
+// ==========================================
+// CLEAR ENTIRE CART
+// ==========================================
 
 const clearCart =
     document.getElementById("clear-cart");
@@ -187,41 +223,58 @@ const clearCart =
 
 if (clearCart) {
 
-    clearCart.addEventListener("click", function() {
+    clearCart.addEventListener(
+        "click",
+        function() {
 
-        cart = [];
+            cart = [];
 
+            saveCart();
 
-        saveCart();
+            displayCart();
 
+            updateCartCount();
 
-        displayCart();
-
-    });
+        }
+    );
 
 }
 
-// SHOW MESSAGE WHEN USER TRIES CHECKOUT WITH EMPTY CART
 
-const urlParams = new URLSearchParams(window.location.search);
+// ==========================================
+// SHOW MESSAGE WHEN CHECKOUT IS
+// ATTEMPTED WITH AN EMPTY CART
+// ==========================================
+
+const urlParams =
+    new URLSearchParams(window.location.search);
+
 
 if (urlParams.get("empty") === "true") {
 
-    const message = document.createElement("p");
+    const message =
+        document.createElement("p");
 
     message.innerText =
         "Your cart is empty! Please add some books before checkout.";
 
     message.style.color = "#c7ff45";
+
     message.style.textAlign = "center";
+
     message.style.margin = "20px auto";
+
     message.style.fontSize = "16px";
+
 
     const cartContainer =
         document.getElementById("cart-container");
 
+
     if (cartContainer) {
+
         cartContainer.prepend(message);
+
     }
 
 }

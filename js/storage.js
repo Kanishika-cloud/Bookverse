@@ -1,4 +1,3 @@
-
 let users =
     JSON.parse(localStorage.getItem("users")) || [];
 
@@ -7,17 +6,28 @@ let currentUser =
 
 let cart = [];
 
-if (currentUser) {
 
-    cart =
-        JSON.parse(
+// LOAD CART
+function loadCart() {
+
+    if (currentUser) {
+
+        cart = JSON.parse(
             localStorage.getItem(
                 "cart_" + currentUser.email
             )
         ) || [];
 
+    } else {
+
+        cart = [];
+
+    }
+
 }
 
+
+// SAVE CART
 function saveCart() {
 
     if (!currentUser) {
@@ -32,19 +42,33 @@ function saveCart() {
 }
 
 
-
+// UPDATE CART COUNT
 function updateCartCount() {
-    const countElement = document.getElementById("cart-count");
+
+    const countElement =
+        document.getElementById("cart-count");
 
     if (!countElement) return;
 
     let totalItems = 0;
 
     cart.forEach(function(item) {
+
         totalItems += Number(item.quantity) || 0;
+
     });
 
     countElement.textContent = totalItems;
+
 }
 
-document.addEventListener("DOMContentLoaded", updateCartCount);
+
+// LOAD CART WHEN SCRIPT RUNS
+loadCart();
+
+
+// UPDATE CART COUNT WHEN PAGE LOADS
+document.addEventListener(
+    "DOMContentLoaded",
+    updateCartCount
+);

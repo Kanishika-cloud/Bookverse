@@ -6,141 +6,145 @@ const quizForm =
 const quizResult =
     document.getElementById("quiz-result");
 
+
 // CHECK LOGIN
 
 if (!currentUser) {
 
-
     window.location.href = "index.html";
 
+} else {
+
+    // CHECK IF QUIZ WAS ALREADY DONE
+
+    const savedTaste =
+        localStorage.getItem(
+            "bookTaste_" + currentUser.email
+        );
+
+    if (savedTaste) {
+
+        showResult(savedTaste);
+
+    }
+
+
+    // QUIZ SUBMIT
+
+    if (quizForm) {
+
+        quizForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                // GENRE SCORES
+
+                let scores = {
+
+                    romcom: 0,
+
+                    thriller: 0,
+
+                    "science-fiction": 0,
+
+                    "non-fiction": 0
+
+                };
+
+
+                // GET ANSWERS
+
+                const answers =
+                    new FormData(quizForm);
+
+
+                // ADD SCORES
+
+                for (let answer of answers.values()) {
+
+                    scores[answer]++;
+
+                }
+
+
+                // FIND HIGHEST SCORE
+
+                let favouriteGenre =
+                    "romcom";
+
+                let highestScore =
+                    scores.romcom;
+
+
+                if (scores.thriller > highestScore) {
+
+                    favouriteGenre = "thriller";
+
+                    highestScore =
+                        scores.thriller;
+
+                }
+
+
+                if (
+                    scores["science-fiction"]
+                    > highestScore
+                ) {
+
+                    favouriteGenre =
+                        "science-fiction";
+
+                    highestScore =
+                        scores["science-fiction"];
+
+                }
+
+
+                if (
+                    scores["non-fiction"]
+                    > highestScore
+                ) {
+
+                    favouriteGenre =
+                        "non-fiction";
+
+                    highestScore =
+                        scores["non-fiction"];
+
+                }
+
+
+                // SAVE BOOK TASTE
+
+                localStorage.setItem(
+
+                    "bookTaste_" +
+                    currentUser.email,
+
+                    favouriteGenre
+
+                );
+
+
+                // SHOW RESULT
+
+                showResult(favouriteGenre);
+
+            }
+
+        );
+
+    }
+
 }
 
-// CHECK IF QUIZ WAS ALREADY DONE
-const savedTaste =
-    localStorage.getItem(
-        "bookTaste_" + currentUser.email
-    );
 
-if (savedTaste) {
-
-    showResult(savedTaste);
-
-}
-// QUIZ SUBMIT
-
-
-if (quizForm) {
-
-    quizForm.addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-
-            // GENRE SCORES
-
-            let scores = {
-
-                romcom: 0,
-
-                thriller: 0,
-
-                "science-fiction": 0,
-
-                "non-fiction": 0
-
-            };
-
-
-            // GET ANSWERS
-
-            const answers =
-                new FormData(quizForm);
-
-
-            // ADD SCORES
-
-            for (let answer of answers.values()) {
-
-                scores[answer]++;
-
-            }
-
-
-            // FIND HIGHEST SCORE
-
-            let favouriteGenre =
-                "romcom";
-
-            let highestScore =
-                scores.romcom;
-
-
-            if (scores.thriller > highestScore) {
-
-                favouriteGenre = "thriller";
-
-                highestScore =
-                    scores.thriller;
-
-            }
-
-
-            if (
-                scores["science-fiction"]
-                > highestScore
-            ) {
-
-                favouriteGenre =
-                    "science-fiction";
-
-                highestScore =
-                    scores["science-fiction"];
-
-            }
-
-
-            if (
-                scores["non-fiction"]
-                > highestScore
-            ) {
-
-                favouriteGenre =
-                    "non-fiction";
-
-                highestScore =
-                    scores["non-fiction"];
-
-            }
-
-
-            // SAVE BOOK TASTE
-
-            localStorage.setItem(
-
-                "bookTaste_" +
-                currentUser.email,
-
-                favouriteGenre
-
-            );
-
-
-            // SHOW RESULT
-
-            showResult(favouriteGenre);
-
-        }
-
-    );
-
-}
 // SHOW RESULT
 
-
 function showResult(genre) {
-
 
     let title = "";
 
@@ -157,7 +161,6 @@ function showResult(genre) {
 
     }
 
-
     else if (genre === "thriller") {
 
         title =
@@ -168,7 +171,6 @@ function showResult(genre) {
 
     }
 
-
     else if (genre === "science-fiction") {
 
         title =
@@ -178,7 +180,6 @@ function showResult(genre) {
             "You enjoy futuristic worlds, big ideas, technology and adventures beyond the ordinary.";
 
     }
-
 
     else if (genre === "non-fiction") {
 
@@ -192,7 +193,10 @@ function showResult(genre) {
 
 
     // HIDE QUESTIONS
+
     quizForm.style.display = "none";
+
+
     // SHOW RESULT
 
     quizResult.innerHTML = `
@@ -209,7 +213,6 @@ function showResult(genre) {
             ${description}
         </p>
 
-
         <button
             onclick="showRecommendations('${genre}')">
 
@@ -220,7 +223,6 @@ function showResult(genre) {
             </span>
 
         </button>
-
 
         <button
             class="retake-button"
@@ -233,7 +235,10 @@ function showResult(genre) {
     `;
 
 }
+
+
 // SHOW RECOMMENDED BOOKS
+
 function showRecommendations(genre) {
 
     localStorage.setItem(
@@ -241,19 +246,24 @@ function showRecommendations(genre) {
         genre
     );
 
-
     window.location.href =
         "books.html?genre=" + genre;
 
 }
+
+
 // RETAKE QUIZ
+
 function retakeQuiz() {
 
     localStorage.removeItem(
         "bookTaste_" + currentUser.email
     );
+
     quizResult.innerHTML = "";
+
     quizForm.reset();
+
     quizForm.style.display = "block";
 
 }
